@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{html,js}"],
+            theme: {
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="../style.css">
+    <title>Rakha | Sagameda</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav
+        class="navbar  flex justify-between items-center fixed top-0 text-[10px] py-4 px-6 bg-white w-full md:text-lg md:px-10 max-h-14 z-50">
+        <div class="leftMenu flex items-center">
+            <div class="logo">
+                <img class="w-8 md:w-full" src="../assets/img/logo.png" alt="">
+            </div>
+            <ul class="leftNavbarLink flex ml-6 md:ml-14 gap-x-3 md:gap-x-10">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./addProject.html">Add Project</a></li>
+            </ul>
+        </div>
+        <div class="rightMenu">
+            <a href="./contact.html" class="bg-black text-white px-2 py-1 rounded-lg md:px-3">Contact Me</a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- FORM -->
+    <div class="bg-[#d7e2ea] min-h-screen pt-20  ">
+        <div class="formContainer w-[230px] m-auto md:w-1/3">
+            <h1 class=" formHeading font-bold text-center text-lg">GET IN TOUCH</h1>
+            <form action="submit">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" style="width: 100%; padding: 5px;" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" style="width: 100%; padding: 5px;" required>
+                <label for="phone">Phone Number</label>
+                <input type="text" name="phone" id="phone" style="width: 100%; padding: 5px;" required>
+                <label for="subject">Subject</label>
+                <select name="Subject" id="subject" style="width: 100%; padding: 5px;" required>
+                    <option value="wth">I want to hire you</option>
+                    <option value="wta">I want to ask about something</option>
+                    <option value="wtt">Let's talk</option>
+                    <option value="wtc">Let's collaborate</option>
+                </select>
+                <label for="description">Your Message</label>
+                <textarea name="" id="description" cols="30" rows="10" style="width: 100%; padding: 5px; resize: none;"
+                    required></textarea>
+                <div style="display: flex; justify-content: flex-end;">
+                    <button class="mb-2"
+                        style="padding: 5px 10px; background-color: orangered; border: none; border-radius: 10px; color: white;"
+                        type="button" onclick="getData()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- FORM END -->
+</body>
+
+</html>

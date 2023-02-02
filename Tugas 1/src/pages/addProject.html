@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{html,js}"],
+            theme: {
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="../style.css">
+    <title>Rakha | Sagameda</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav
+        class="navbar  flex justify-between items-center fixed top-0 text-[10px] py-4 px-6 bg-white w-full md:text-lg md:px-10 max-h-14 z-50">
+        <div class="leftMenu flex items-center">
+            <div class="logo">
+                <img class="w-8 md:w-full" src="../assets/img/logo.png" alt="">
+            </div>
+            <ul class="leftNavbarLink flex ml-6 md:ml-14 gap-x-3 md:gap-x-10">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./addProject.html">Add Project</a></li>
+            </ul>
+        </div>
+        <div class="rightMenu">
+            <a href="./contact.html" class="bg-black text-white px-2 py-1 rounded-lg md:px-3">Contact Me</a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- MAIN CONTENT -->
+    <div class="w-full  bg-[#d7e2ea] min-h-screen flex flex-col justify-center items-center px-5 pt-20">
+        <div class=" header">
+            <h2 class="font-bold mb-5">
+                Add My Project
+            </h2>
+        </div>
+
+        <div class="w-[80%] mb-20 lg:w-1/2">
+            <form onsubmit="getData()" id="projectForm">
+                <div class="projectName">
+                    <label class="font-medium" for="name">Project Name</label>
+                    <input class="mb-2 rounded-md" type="text" id="projectTitle" required>
+                </div>
+                <div class="projectDate lg:grid lg:grid-cols-2 lg:gap-5">
+                    <div>
+                        <label class="font-medium" for="startDate">Start Date</label>
+                        <input class=" mb-2 rounded-md" type="date" name="startDate" id="startDate"
+                            min="2010-01-01T00:00" max="2030-12-31" required>
+                    </div>
+                    <div>
+                        <label class="font-medium" for="endDate">End Date</label>
+                        <input class=" mb-2 rounded-md" type="date" name="endDate" id="endDate" min="2010-01-01T00:00"
+                            max="2030-12-31" required>
+                    </div>
+                </div>
+                <div class="projectDesc">
+                    <label class="font-medium" for="description">Description</label>
+                    <textarea class=" mb-2 rounded-md" name="description" id="description" cols="10" rows="5"
+                        style="resize: none;"></textarea>
+                </div>
+                <div class="projectTech">
+                    <label class="font-medium" for="tech">Technologies</label>
+                    <div class="technologiesList grid grid-cols-2">
+                        <div>
+                            <input type="checkbox" name="react" id="react" value="React Js" class="checkbox">
+                            <label for="react">React Js</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="node" id="node" value="Node Js" class="checkbox">
+                            <label for="node">Node Js</label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" name="javascript" id="javascript" value="Javascript"
+                                class="checkbox">
+                            <label for="javascript">Javascript</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="angular" id="angular" value="Angular" class="checkbox">
+                            <label for="angular">Angular</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="projectThumbnail">
+                    <label class="font-medium" for="image">Upload Image</label>
+                    <input class="file w-full rounded-none" type="file" name="image" id="image"
+                        accept="image/png, image/gif, image/jpeg" required />
+                </div>
+                <div class="formSubmit flex justify-end">
+                    <button class="submitButton bg-black text-white px-4 py-1 rounded-xl"
+                        style="cursor: pointer;">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- MAIN CONTENT END -->
+</body>
+
+</html>
