@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1edd778b6f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{html,js}"],
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'cardShadow': 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;'
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <title>Rakha | Sagameda</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav
+        class="navbar  flex justify-between items-center fixed top-0 text-[10px] py-4 px-6 bg-white w-full md:text-lg md:px-10">
+        <div class="leftMenu flex items-center">
+            <div class="logo">
+                <img class="w-8 md:w-full" src="../public/img/logo.png" alt="">
+            </div>
+            <ul class="leftNavbarLink flex ml-6 md:ml-14 gap-x-3 md:gap-x-10">
+                <li><a href="/">Home</a></li>
+                <li><a href="/addProject">Add Project</a></li>
+            </ul>
+        </div>
+        <div class="rightMenu">
+            <a href="/contact" class="bg-black text-white px-2 py-1 rounded-lg md:px-3">Contact Me</a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- MAIN CARD -->
+
+    <div class="px-6 text-xs bg-[#d7e2ea] flex flex-col md:px-10 md:text-sm ">
+        <div
+            class="md:bg-white md:m-[50px] md:mt-28 md:rounded-xl md:py-10 md:px-10 flex flex-col md:flex-row justify-center items-center">
+            <div class="leftOnDesktop md:flex md:flex-col md:justify-between">
+                <div class="mainContentText text-justify flex flex-col gap-y-2">
+                    <h4 class="mt-24 font-bold md:mt-0 md:text-xl">Hi, Welcome to my hut</h4>
+                    <p>Hallo, mein name ist Rakha Randhikatama, ich bin zwanzig jahre alt, I think that's all I can do
+                        to
+                        introduce myself in Germany. Yes, I've been practicing my Germany because I've been dreaming to
+                        go
+                        there.</p>
+                    <p>Nothing really interesting to write here, so I guess I will let the mighty lorem to finish the
+                        paragraph,
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, sapiente omnis? Ipsam numquam,
+                        officiis
+                        molestias ipsum, molestiae, ad provident consequatur hic quis alias tenetur assumenda atque
+                        commodi
+                        tempore aliquam libero.</p>
+                </div>
+                <div class="mainContentContact mt-5  flex gap-x-[10px] items-center">
+                    <a href="/contact" class="bg-black text-white px-[20px] py-[3px] rounded-md">Contact</a>
+                    <div style="display: flex; align-items: center;column-gap: 10px;">
+                        <a style="background-color: transparent; color: black;"
+                            href="https://docs.google.com/document/d/1xeOmtt2tvZzjiGTaipNG_lA2lhE6_oPt/edit?usp=share_link&ouid=109879742821620154344&rtpof=true&sd=true">
+                            Download
+                            CV <i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="mainContentSocmed flex ">
+                    <ul class="flex mt-5 gap-x-5">
+                        <li>
+                            <a href="https://web.facebook.com/rakha.randhikatama/" target="_blank"><i
+                                    class="fa-brands fa-facebook fa-2xl"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/rakharan/" target="_blank"><i
+                                    class="fa-brands fa-instagram fa-2xl"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/rakha-randhikatama/" target="_blank"><i
+                                    class="fa-brands fa-linkedin fa-2xl"></i></a>
+                        </li>
+                        <li> <a href="https://steamcommunity.com/id/rakhafals/" target="_blank"><i
+                                    class="fa-brands fa-steam fa-2xl"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rightOnDesktop">
+                <div class="profile w-[60%] m-auto rounded-xl shadow-cardShadow">
+                    <div class="profileImage rounded-t-xl overflow-hidden mt-5">
+                        <img src="../public/img/Rakha.webp" alt="">
+                    </div>
+                    <div class="profileDesc text-center my-[10px] py-[10px]">
+                        <h4 class="font-bold text-xs md:text-base">Rakha Randhikatama</h4>
+                        <p>Fullstack Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CARD END -->
+
+    <!-- MY PROJECT LIST -->
+    <div>
+        <div class="header">
+            <h1 class="text-center font-bold mt-20">MY PROJECT</h1>
+        </div>
+        <div
+            class="projectListContainer flex justify-center flex-col items-center mt-14 px-[30px] md:flex md:flex-wrap md:flex-row md:items-center md:px-[30px] md:gap-5 md:mb-[50px] lg:mt-20">
+
+            <div
+                class="projectListItem shadow-cardShadow rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%]">
+
+                <div class="projectThumbnail">
+                    <img src="../public/img/project1.webp" alt="project thumbnail"
+                        class="rounded-lg object-cover h-[250px] w-full">
+                </div>
+                <div class="projectDetails text-xs flex flex-col mt-[10px] md:text-base">
+                    <div class="detailsHeader">
+                        <h4 class="font-bold">Kotakode Clone - 2022</h4>
+                        <span class="opacity-[0.7]">durasi: 2 bulan</span>
+                    </div>
+                    <div class="detailsParagraph mt-4">
+                        <p class="line-clamp-3">
+                            Kotakode Clone is a project I initially made to complete a test as a ticket to an IT
+                            Bootcamp couple months ago. It turns out that I learned a lot from developing the
+                            project.
+                            The project is still under development, even though I haven't touched the code since
+                            ages.
+
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit ducimus, sit pariatur
+                            nesciunt fugiat iste tempore earum nulla, facere odio, repellendus adipisci recusandae
+                            culpa
+                            quis!
+
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit ducimus, sit pariatur
+                            nesciunt fugiat iste tempore earum nulla, facere odio, repellendus adipisci recusandae
+                            culpa
+                            quis!
+                        </p>
+                        <div><a href="./projectDetail.html" class="readMore">Read More</a></div>
+                    </div>
+                    <div class="detailsTech flex my-8 gap-x-5">
+                        <i class="fa-brands fa-react fa-2xl"></i>
+                        <i class="fa-brands fa-js fa-2xl"></i>
+                    </div>
+                </div>
+                <div class="projectButton flex jc gap-x-[10px] text-xs md:text-base">
+                    <a href="#" class="w-full bg-black rounded-lg text-center text-white py-1">Edit</a>
+                    <a href="#" class="w-full bg-black rounded-lg text-center text-white py-1">Delete</a>
+                </div>
+            </div>
+            <div
+                class="projectListItem shadow-cardShadow rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%]">
+
+                <div class="projectThumbnail">
+                    <img src="../public/img/project1.webp" alt="project thumbnail"
+                        class="rounded-lg object-cover h-[250px] w-full">
+                </div>
+                <div class="projectDetails text-xs flex flex-col mt-[10px] md:text-base">
+                    <div class="detailsHeader">
+                        <h4 class="font-bold">Kotakode Clone - 2022</h4>
+                        <span class="opacity-[0.7]">durasi: 2 bulan</span>
+                    </div>
+                    <div class="detailsParagraph mt-4">
+                        <p class="line-clamp-3">
+                            Kotakode Clone is a project I initially made to complete a test as a ticket to an IT
+                            Bootcamp couple months ago. It turns out that I learned a lot from developing the
+                            project.
+                            The project is still under development, even though I haven't touched the code since
+                            ages.
+
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit ducimus, sit pariatur
+                            nesciunt fugiat iste tempore earum nulla, facere odio, repellendus adipisci recusandae
+                            culpa
+                            quis!
+
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit ducimus, sit pariatur
+                            nesciunt fugiat iste tempore earum nulla, facere odio, repellendus adipisci recusandae
+                            culpa
+                            quis!
+                        </p>
+                        <div><a href="./projectDetail.html" class="readMore">Read More</a></div>
+                    </div>
+                    <div class="detailsTech flex my-8 gap-x-5">
+                        <i class="fa-brands fa-react fa-2xl"></i>
+                        <i class="fa-brands fa-js fa-2xl"></i>
+                    </div>
+                </div>
+                <div class="projectButton flex jc gap-x-[10px] text-xs md:text-base">
+                    <a href="#" class="w-full bg-black rounded-lg text-center text-white py-1">Edit</a>
+                    <a href="#" class="w-full bg-black rounded-lg text-center text-white py-1">Delete</a>
+                </div>
+            </div>
+            <div
+                class="projectListItem shadow-cardShadow rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%]">
+
+                <div class="projectThumbnail">
+                    <img src="../public/img/project1.webp" alt="project thumbnail"
+                        class="rounded-lg object-cover h-[250px] w-full">
+                </div>
+                <div class="projectDetails text-xs flex flex-col mt-[10px] md:text-base">
+                    <div class="detailsHeader">
+                        <h4 class="font-bold">Kotakode Clone - 2022</h4>
+                        <span class="opacity-[0.7]">durasi: 2 bulan</span>
+                    </div>
+                    <div class="detailsParagraph mt-4">
+                        <p class="line-clamp-3">
+                            Kotakode Clone is a project I initially made to complete a test as a ticket to an IT
+                            Bootcamp couple months ago. It turns out that I learned a lot from developing the
+                            project.
+                            The project is still under development, even though I haven't touched the code since
+                            ages.
+
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit ducimus, sit pariatur
+                            nesciunt fugiat iste tempore earum nulla, facere odio, repellendus adipisci recusandae
+                            culpa
+                            quis!
+
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit ducimus, sit pariatur
+                            nesciunt fugiat iste tempore earum nulla, facere odio, repellendus adipisci recusandae
+                            culpa
+                            quis!
+                        </p>
+                        <div><a href="./projectDetail.html" class="readMore">Read More</a></div>
+                    </div>
+                    <div class="detailsTech flex my-8 gap-x-5">
+                        <i class="fa-brands fa-react fa-2xl"></i>
+                        <i class="fa-brands fa-js fa-2xl"></i>
+                    </div>
+                </div>
+                <div class="projectButton flex jc gap-x-[10px] text-xs md:text-base">
+                    <a href="#" class="w-full bg-black rounded-lg text-center text-white py-1">Edit</a>
+                    <a href="#" class="w-full bg-black rounded-lg text-center text-white py-1">Delete</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- MY PROJECT LIST END -->
+</body>
+
+</html>
