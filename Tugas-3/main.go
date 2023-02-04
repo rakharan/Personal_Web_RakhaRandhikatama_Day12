@@ -37,6 +37,16 @@ var Projects = []Project{
 		IsUsingAngular:    true,
 		IsUsingJavascript: true,
 	},
+	{
+		Title:             "Kotakode Clone 2",
+		Description:       "Kotakode merupakan platform komunitas bagi para pegiat IT di Indonesia dimana programmer dapat belajar dan berbagi wawasan seputar dunia IT terkini untuk mendukung memberikan pertumbuhan perekonomian di Indonesia.",
+		StartDate:         time.Now().Format("2006-01-02"),
+		EndDate:           time.Now().Format("2006-01-02"),
+		IsUsingReact:      true,
+		IsUsingNode:       true,
+		IsUsingAngular:    true,
+		IsUsingJavascript: true,
+	},
 }
 
 func main() {
@@ -49,7 +59,7 @@ func main() {
 	router.HandleFunc("/addProjectForm", addProjectForm).Methods("GET")
 	router.HandleFunc("/contact", contact).Methods("GET")
 	router.HandleFunc("/addProject", addProject).Methods("POST")
-	router.HandleFunc("/update-project", updateProject).Methods("POST")
+	router.HandleFunc("/update-project/{id}", updateProject).Methods("POST")
 	router.HandleFunc("/delete-project/{id}", deleteProject).Methods("GET")
 	router.HandleFunc("/project-detail/{id}", projectDetail).Methods("GET")
 	router.HandleFunc("/edit-project/{id}", editProject).Methods("GET")
@@ -224,8 +234,10 @@ func editProject(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := map[string]interface{}{
-		"Data":    Data,
-		"Project": ProjectData,
+		"Data":     Data,
+		"Project":  ProjectData,
+		"Projects": Projects,
+		"Index":    id,
 	}
 	w.WriteHeader(http.StatusOK)
 	tmpl.Execute(w, resp)
@@ -233,6 +245,7 @@ func editProject(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateProject(w http.ResponseWriter, r *http.Request) {
+
 	err := r.ParseForm()
 	if err != nil {
 		log.Fatal(err)
@@ -261,14 +274,20 @@ func updateProject(w http.ResponseWriter, r *http.Request) {
 		isUsingAngular = true
 	}
 
-	pr := &Projects[id]
-	(*pr).Title = title
-	(*pr).Description = description
-	(*pr).StartDate = startDate
-	(*pr).EndDate = endDate
-	(*pr).IsUsingReact = isUsingReact
-	(*pr).IsUsingNode = isUsingNode
-	(*pr).IsUsingJavascript = isUsingJavascript
-	(*pr).IsUsingAngular = isUsingAngular
+	for i := range Projects {
+		pr := &Projects[id]
+		if i == id {
+			(*pr).Title = title
+			(*pr).Description = description
+			(*pr).StartDate = startDate
+			(*pr).EndDate = endDate
+			(*pr).IsUsingReact = isUsingReact
+			(*pr).IsUsingReact = isUsingReact
+			(*pr).IsUsingNode = isUsingNode
+			(*pr).IsUsingJavascript = isUsingJavascript
+			(*pr).IsUsingAngular = isUsingAngular
+		}
+	}
+
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }

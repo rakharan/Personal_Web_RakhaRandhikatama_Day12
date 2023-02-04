@@ -37,6 +37,7 @@
     <!-- NAVBAR END -->
 
     <!-- MAIN CONTENT -->
+
     <div class="w-full  bg-[#d7e2ea] min-h-screen flex flex-col justify-center items-center px-5 pt-20">
         <div class=" header">
             <h2 class="font-bold mb-5">
@@ -44,7 +45,9 @@
             </h2>
         </div>
         <div class="w-[80%] mb-20 lg:w-1/2">
-            <form action="/update-project" method="post" id="projectForm">
+
+            <form action="/update-project/{{.Index}}" method="post" id="projectForm">
+
                 <div class="projectName">
                     <label class="font-medium" for="name">Project Name</label>
                     <input class="mb-2 rounded-md" name="title" type="text" id="projectTitle" value="{{ .Project.Title
@@ -114,12 +117,12 @@
                         accept="image/png, image/gif, image/jpeg" />
                 </div>
                 <div class="formSubmit flex justify-end">
-                    <button class="submitButton bg-black text-white px-4 py-1 rounded-xl"
+                    <button type="submit" class="submitButton bg-black text-white px-4 py-1 rounded-xl"
                         style="cursor: pointer;">Submit</button>
                 </div>
             </form>
-        </div>
 
+        </div>
 
     </div>
     <!-- MAIN CONTENT END -->

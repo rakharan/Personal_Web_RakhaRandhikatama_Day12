@@ -116,7 +116,7 @@
             class="projectListContainer flex justify-center flex-col items-center mt-14 px-[30px] md:flex md:flex-wrap md:flex-row md:items-center md:px-[30px] md:gap-5 md:mb-[50px] lg:mt-20">
             {{range $index, $data := .Projects}}
             <div
-                class="projectListItem shadow-cardShadow  rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%] justify-between min-h-[550px]">
+                class="projectListItem shadow-cardShadow  rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%] min-h-[550px]">
 
                 <div class="projectThumbnail">
                     <img src="../public/img/project1.webp" alt="project thumbnail"
@@ -149,7 +149,7 @@
                         {{end}}
                     </div>
                 </div>
-                <div class="projectButton flex jc gap-x-[10px] text-xs md:text-base">
+                <div class="projectButton flex justify-self-end gap-x-[10px] text-xs md:text-base">
                     <a href="/edit-project/{{$index}}"
                         class="w-full bg-black rounded-lg text-center text-white py-1">Edit</a>
                     <a href="/delete-project/{{$index}}"
