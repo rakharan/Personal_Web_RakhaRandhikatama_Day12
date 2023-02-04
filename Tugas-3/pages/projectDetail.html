@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakha | Project Detail</title>
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <script src="https://kit.fontawesome.com/1edd778b6f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{html,js}"],
+            theme: {
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav
+        class="navbar  flex justify-between items-center fixed top-0 text-[10px] py-4 px-6 bg-white w-full md:text-lg md:px-10">
+        <div class="leftMenu flex items-center">
+            <div class="logo">
+                <img class="w-8 md:w-full" src="../public/img/logo.png" alt="">
+            </div>
+            <ul class="leftNavbarLink flex ml-6 md:ml-14 gap-x-3 md:gap-x-10">
+                <li><a href="/">Home</a></li>
+                <li><a href="/addProjectForm">Add Project</a></li>
+            </ul>
+        </div>
+        <div class="rightMenu">
+            <a href="/contact" class="bg-black text-white px-2 py-1 rounded-lg md:px-3">Contact Me</a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- MAIN CONTENT -->
+    <div class="projectMainContent">
+        <div class="title">
+            <h2>{{.Project.Title}}</h2>
+        </div>
+        <div class="header">
+            <div class="headerImage">
+                <img src="./assets/img/project1.png" alt="kotakode" width="100%">
+            </div>
+            <div class="headerDesc">
+                <div class="duration">
+                    <h5>Duration</h5>
+                    <div>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span> {{.Project.StartDate}} - {{.Project.EndDate}}</span>
+                    </div>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <span>11 Months</span>
+                    </div>
+                </div>
+                <h5>Technologies Used</h5>
+                <div class="technology">
+                    {{if .Project.IsUsingReact}}
+                    <i class="fa-brands fa-react fa-2xl"></i>
+                    {{end}}
+                    {{if .Project.IsUsingJavascript}}
+                    <i class="fa-brands fa-js fa-2xl"></i>
+                    {{end}}
+                    {{if .Project.IsUsingNode}}
+                    <i class="fa-brands fa-node fa-2xl"></i>
+                    {{end}}
+                    {{if .Project.IsUsingAngular}}
+                    <i class="fa-brands fa-angular fa-2xl"></i>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+        <a href="https://skilltest-ip-rakharan.vercel.app/"
+            style="margin-top: 20px;background-color: lightseagreen; padding: 5px 10px; color: white;">Visit
+            Kotakode Clone</a>
+        <div class="projectDescription">
+            <p>Kotakode Clone is a project I initially made to complete a test as a ticket to an IT Bootcamp couple
+                months ago. It turns out that I learned a lot from developing the project. The project is still under
+                development, even though I haven't touched the code since ages.</p>
+            <p class="font-bold">DESCRIPTION FROM FORM STARTS BELOW</p>
+            <p>{{.Project.Description}}</p>
+        </div>
+    </div>
+    <!-- MAIN CONTENT END -->
+</body>
+
+</html>
