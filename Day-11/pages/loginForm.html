@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{html,js}"],
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'cardShadow': 'rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;'
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav
+        class="navbar  flex justify-between items-center fixed top-0 text-[10px] py-4 px-6 bg-white w-full md:text-lg md:px-10 shadow-cardShadow">
+        <div class="leftMenu flex items-center">
+            <div class="logo">
+                <img class="w-8 md:w-full" src="../public/img/logo.png" alt="">
+            </div>
+            <ul class="leftNavbarLink flex ml-6 md:ml-14 gap-x-3 md:gap-x-10">
+                <li><a href="/">Home</a></li>
+                {{if .IsLogin}}
+                <li><a href="/addProjectForm">Add Project</a></li>
+                {{end}}
+            </ul>
+        </div>
+        <div class="rightMenu flex gap-x-3 items-center">
+            <ul class="leftNavbarLink flex ml-6 md:ml-14 gap-x-3 md:gap-x-10 mr-4">
+                {{if .IsLogin}}
+                <li><a href="/profile">Halo, {{.Username}}</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                {{end}}
+            </ul>
+            <a href="/contact" class="bg-black text-white px-2 py-1 rounded-lg md:px-3">Contact Me</a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+
+    <!-- MAIN FORM -->
+    <div class="w-full  bg-[#d7e2ea] min-h-screen flex flex-col justify-center items-center px-5 pt-20">
+        <div class=" header">
+            <h2 class="font-bold mb-5">
+                Login
+            </h2>
+        </div>
+
+        <div class="w-[80%] mb-20 lg:w-1/2">
+            <form action="/login" method="post" id="loginForm">
+                <div class="email">
+                    <label class="font-medium" for="email">Email</label>
+                    <input class="mb-2 rounded-md" name="email" type="email" id="email" placeholder="John@gmail.com"
+                        required>
+                </div>
+                <div class="password">
+                    <label class="font-medium" for="password">Password</label>
+                    <input class="mb-2 rounded-md" name="password" type="password" id="password" required>
+                </div>
+                <div class="formSubmit flex justify-end">
+                    <button class="submitButton bg-black text-white px-4 py-1 rounded-xl"
+                        style="cursor: pointer;">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- MAIN FORM END -->
+</body>
+
+</html>
