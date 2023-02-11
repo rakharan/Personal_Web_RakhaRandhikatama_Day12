@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"text/template"
 	"tugas-3/connection"
+	"tugas-3/middleware"
 
 	"time"
 
@@ -47,6 +48,7 @@ type Project struct {
 	Formatted_Start_Date string
 	Formatted_End_Date   string
 	Author               string
+	Image                string
 }
 
 var Projects []Project
@@ -56,11 +58,12 @@ func main() {
 	router := mux.NewRouter()
 	connection.DatabaseConnect()
 	router.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))
+	router.PathPrefix("/uploads/").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads/"))))
 
 	router.HandleFunc("/", home).Methods("GET")
 	router.HandleFunc("/addProjectForm", addProjectForm).Methods("GET")
 	router.HandleFunc("/contact", contact).Methods("GET")
-	router.HandleFunc("/addProject", addProject).Methods("POST")
+	router.HandleFunc("/addProject", middleware.UploadFile(addProject)).Methods("POST")
 	router.HandleFunc("/update-project/{id}", updateProject).Methods("POST")
 	router.HandleFunc("/project-detail/{id}", projectDetail).Methods("GET")
 	router.HandleFunc("/edit-project/{id}", editProject).Methods("GET")
@@ -87,13 +90,13 @@ func home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, _ := connection.Conn.Query(context.Background(), "SELECT tb_project.id, title, description, date(start_date), date(end_date), technologies,  tb_user.name as author FROM tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id ORDER BY id ASC")
+	rows, _ := connection.Conn.Query(context.Background(), "SELECT tb_project.id, title, description, date(start_date), date(end_date), technologies, image,  tb_user.name as author FROM tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id ORDER BY id ASC")
 
 	var result []Project
 	for rows.Next() {
 		var each = Project{}
 
-		var err = rows.Scan(&each.Id, &each.Title, &each.Description, &each.StartDate, &each.EndDate, &each.Technologies, &each.Author)
+		var err = rows.Scan(&each.Id, &each.Title, &each.Description, &each.StartDate, &each.EndDate, &each.Technologies, &each.Image, &each.Author)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -112,6 +115,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 		Data.IsLogin = session.Values["IsLogin"].(bool)
 		Data.Username = session.Values["Name"].(string)
 	}
+
 	resp := map[string]interface{}{
 		"Projects": result,
 		"Data":     Data,
@@ -154,13 +158,15 @@ func addProject(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	dataContex := r.Context().Value("dataFile")
+	image := dataContex.(string)
 	title := r.PostForm.Get("title")
 	description := r.PostForm.Get("description")
 	startDate := r.PostForm.Get("startDate")
 	endDate := r.PostForm.Get("endDate")
 	technology := r.Form["technology"]
-	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_project(title, description, start_date, end_date, technologies, author_id) VALUES ($1, $2, $3, $4, $5, $6)", title, description, startDate, endDate, technology, user.Id)
+
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_project(title, description, start_date, end_date, technologies, image, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7)", title, description, startDate, endDate, technology, image, user.Id)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Message : " + err.Error()))
@@ -184,7 +190,7 @@ func projectDetail(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ProjectDetail := Project{}
-	err = connection.Conn.QueryRow(context.Background(), "SELECT title, description, date(start_date), date(end_date), technologies FROM public.tb_project WHERE id=$1", id).Scan(&ProjectDetail.Title, &ProjectDetail.Description, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Technologies)
+	err = connection.Conn.QueryRow(context.Background(), "SELECT title, description, date(start_date), date(end_date), technologies, image FROM public.tb_project WHERE id=$1", id).Scan(&ProjectDetail.Title, &ProjectDetail.Description, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Technologies, &ProjectDetail.Image)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Message : " + err.Error()))

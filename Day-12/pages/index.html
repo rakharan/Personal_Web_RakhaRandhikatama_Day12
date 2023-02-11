@@ -55,7 +55,7 @@
 
     <!-- MAIN CARD -->
 
-    <div class="px-6 text-xs bg-[#d7e2ea] flex flex-col md:px-10 md:text-sm ">
+    <div class="px-6 text-xs bg-[#d7e2ea] flex flex-col md:px-10 md:text-sm select-none">
         <div
             class="md:bg-white md:m-[50px] md:mt-28 md:rounded-xl md:py-10 md:px-10 flex flex-col md:flex-row justify-center items-center">
             <div class="leftOnDesktop md:flex md:flex-col md:justify-between">
@@ -105,7 +105,7 @@
             <div class="rightOnDesktop">
                 <div class="profile w-[60%] m-auto rounded-xl shadow-cardShadow">
                     <div class="profileImage rounded-t-xl overflow-hidden mt-5">
-                        <img src="../public/img/Rakha.webp" alt="">
+                        <img src="../public/img/Rakha.webp" alt="rakha profile img">
                     </div>
                     <div class="profileDesc text-center my-[10px] py-[10px]">
                         <h4 class="font-bold text-xs md:text-base">Rakha Randhikatama</h4>
@@ -119,7 +119,7 @@
     <!-- MAIN CARD END -->
 
     <!-- MY PROJECT LIST -->
-    <div>
+    <div class="select-none">
         <div class="header">
             <h1 class="text-center font-bold mt-20">MY PROJECT</h1>
         </div>
@@ -130,8 +130,8 @@
                 class="projectListItem shadow-cardShadow  rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%] min-h-[550px] max-h-[550px] justify-between">
 
                 <div class="projectThumbnail">
-                    <img src="../public/img/project1.webp" alt="project thumbnail"
-                        class="rounded-lg object-cover h-[250px] w-full">
+                    <img src="http://localhost:3000/uploads/{{$data.Image}}" alt="project thumbnail"
+                        class="rounded-lg object-cover h-[270px] w-full">
                 </div>
                 <div class="projectDetails text-xs flex flex-col mt-[10px] md:text-base justify-between">
                     <div class="detailsHeader">

@@ -57,24 +57,24 @@
             <form action="/addProject" method="post" id="projectForm" enctype="multipart/form-data">
                 <div class="projectName">
                     <label class="font-medium" for="name">Project Name</label>
-                    <input class="mb-2 rounded-md" name="title" type="text" id="projectTitle">
+                    <input class="mb-2 rounded-md" name="title" type="text" id="projectTitle" required>
                 </div>
                 <div class="projectDate lg:grid lg:grid-cols-2 lg:gap-5">
                     <div>
                         <label class="font-medium" for="startDate">Start Date</label>
                         <input class=" mb-2 rounded-md" type="date" name="startDate" id="startDate"
-                            min="2010-01-01T00:00" max="2030-12-31">
+                            min="2010-01-01T00:00" max="2030-12-31" required>
                     </div>
                     <div>
                         <label class="font-medium" for="endDate">End Date</label>
                         <input class=" mb-2 rounded-md" type="date" name="endDate" id="endDate" min="2010-01-01T00:00"
-                            max="2030-12-31">
+                            max="2030-12-31" required>
                     </div>
                 </div>
                 <div class="projectDesc">
                     <label class="font-medium" for="description">Description</label>
                     <textarea class="p-[10px] mb-2 rounded-md" name="description" id="description" cols="10" rows="5"
-                        style="resize: none;"></textarea>
+                        style="resize: none;" required></textarea>
                 </div>
                 <div class="projectTech">
                     <label class="font-medium" for="tech">Technologies</label>
@@ -100,9 +100,9 @@
 
                 </div>
                 <div class="projectThumbnail">
-                    <label class="font-medium" for="image">Upload Image</label>
-                    <input class="file w-full rounded-none" type="file" name="image" id="image"
-                        accept="image/png, image/gif, image/jpeg" />
+                    <label class="font-medium" for="input-image">Upload Image</label>
+                    <input class="file w-full rounded-none" type="file" name="input-image" id="input-image"
+                        accept="image/png, image/gif, image/jpeg" required />
                 </div>
                 <div class="formSubmit flex justify-end">
                     <button class="submitButton bg-black text-white px-4 py-1 rounded-xl"
