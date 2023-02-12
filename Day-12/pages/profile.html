@@ -1,9 +1,11 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
     <script src="https://kit.fontawesome.com/1edd778b6f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
@@ -20,7 +22,6 @@
         }
     </script>
     <link rel="stylesheet" href="../public/css/style.css">
-    <title>Rakha | Sagameda</title>
 </head>
 
 <body>
@@ -53,79 +54,16 @@
     </nav>
     <!-- NAVBAR END -->
 
-    <!-- MAIN CARD -->
-
-    <div class="px-6 text-xs bg-[#d7e2ea] flex flex-col md:px-10 md:text-sm select-none">
-        <div
-            class="md:bg-white md:m-[50px] md:mt-28 md:rounded-xl md:py-10 md:px-10 flex flex-col md:flex-row justify-center items-center">
-            <div class="leftOnDesktop md:flex md:flex-col md:justify-between">
-                <div class="mainContentText text-justify flex flex-col gap-y-2">
-                    <h4 class="mt-24 font-bold md:mt-0 md:text-xl">Hi, Welcome to my hut</h4>
-                    <p>Hallo, mein name ist Rakha Randhikatama, ich bin zwanzig jahre alt, I think that's all I can do
-                        to
-                        introduce myself in Germany. Yes, I've been practicing my Germany because I've been dreaming to
-                        go
-                        there.</p>
-                    <p>Nothing really interesting to write here, so I guess I will let the mighty lorem to finish the
-                        paragraph,
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, sapiente omnis? Ipsam numquam,
-                        officiis
-                        molestias ipsum, molestiae, ad provident consequatur hic quis alias tenetur assumenda atque
-                        commodi
-                        tempore aliquam libero.</p>
-                </div>
-                <div class="mainContentContact mt-5  flex gap-x-[10px] items-center">
-                    <a href="/contact" class="bg-black text-white px-[20px] py-[3px] rounded-md">Contact</a>
-                    <div style="display: flex; align-items: center;column-gap: 10px;">
-                        <a style="background-color: transparent; color: black;"
-                            href="https://docs.google.com/document/d/1xeOmtt2tvZzjiGTaipNG_lA2lhE6_oPt/edit?usp=share_link&ouid=109879742821620154344&rtpof=true&sd=true">
-                            Download
-                            CV <i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-                <div class="mainContentSocmed flex ">
-                    <ul class="flex mt-5 gap-x-5">
-                        <li>
-                            <a href="https://web.facebook.com/rakha.randhikatama/" target="_blank"><i
-                                    class="fa-brands fa-facebook fa-2xl"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/rakharan/" target="_blank"><i
-                                    class="fa-brands fa-instagram fa-2xl"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/rakha-randhikatama/" target="_blank"><i
-                                    class="fa-brands fa-linkedin fa-2xl"></i></a>
-                        </li>
-                        <li> <a href="https://steamcommunity.com/id/rakhafals/" target="_blank"><i
-                                    class="fa-brands fa-steam fa-2xl"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="rightOnDesktop">
-                <div class="profile w-[60%] m-auto rounded-xl shadow-cardShadow">
-                    <div class="profileImage rounded-t-xl overflow-hidden mt-5">
-                        <img src="../public/img/Rakha.webp" alt="rakha profile img">
-                    </div>
-                    <div class="profileDesc text-center my-[10px] py-[10px]">
-                        <h4 class="font-bold text-xs md:text-base">Rakha Randhikatama</h4>
-                        <p>Fullstack Developer</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN CARD END -->
-
     <!-- MY PROJECT LIST -->
     <div class="select-none">
         <div class="header">
-            <h1 class="text-center font-bold mt-20">ALL PROJECTS</h1>
+            <h1 class="text-center font-bold mt-40">Lists of your projects</h1>
         </div>
         <div
             class="projectListContainer flex justify-center flex-col items-center mt-14 px-[30px] md:flex md:flex-wrap md:flex-row md:items-center md:px-[30px] md:gap-5 md:mb-[50px] lg:mt-20">
             {{range $index, $data := .Projects}}
+            {{$AuthorName := $data.Author}}
+            {{if eq $AuthorName $.Data.Username}}
             <div
                 class="projectListItem shadow-cardShadow  rounded-lg p-[15px] bg-zinc-100 flex flex-col mb-[50px] w-[80%] md:mb-0 md:flex-[0.3_1_45%] lg:flex-[0.3_1_30%] min-h-[550px] max-h-[550px] justify-between">
 
@@ -151,18 +89,18 @@
                         {{end}}
                     </div>
                 </div>
-                {{$AuthorName := $data.Author}}
-                {{if $.Data.IsLogin }}
+
                 <div class="projectButton flex justify-self-end gap-x-[10px] text-xs md:text-base">
-                    {{if eq $AuthorName $.Data.Username}}
+
                     <a href="/edit-project/{{$data.Id}}"
                         class="w-full bg-black rounded-lg text-center text-white py-1">Edit</a>
                     <a href="/deleteProject/{{$data.Id}}"
                         class="w-full bg-black rounded-lg text-center text-white py-1">Delete</a>
-                    {{end}}
+
                 </div>
-                {{end}}
+
             </div>
+            {{end}}
             {{end}}
 
 

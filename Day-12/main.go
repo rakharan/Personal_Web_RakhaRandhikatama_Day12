@@ -73,6 +73,7 @@ func main() {
 	router.HandleFunc("/login", loginForm).Methods("GET")
 	router.HandleFunc("/login", login).Methods("POST")
 	router.HandleFunc("/logout", logout).Methods("GET")
+	router.HandleFunc("/profile", profile).Methods("GET")
 	fmt.Println("Server running on port 3000")
 	http.ListenAndServe("localhost:3000", router)
 }
@@ -326,7 +327,7 @@ func updateProject(w http.ResponseWriter, r *http.Request) {
 
 func registerForm(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	var tmpl, err = template.ParseFiles("pages/Register/registerForm.html")
+	var tmpl, err = template.ParseFiles("pages/registerForm.html")
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("message : " + err.Error()))
@@ -427,4 +428,48 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Pragma", "no-cache")
 	w.Header().Set("Expires", "0")
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+}
+
+func profile(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	var tmpl, err = template.ParseFiles("pages/profile.html")
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
+	}
+	rows, _ := connection.Conn.Query(context.Background(), "SELECT tb_project.id, title, description, date(start_date), date(end_date), technologies, image,  tb_user.name as author FROM tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id ORDER BY id ASC")
+
+	var result []Project
+	for rows.Next() {
+		var each = Project{}
+
+		var err = rows.Scan(&each.Id, &each.Title, &each.Description, &each.StartDate, &each.EndDate, &each.Technologies, &each.Image, &each.Author)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		each.Formatted_Start_Date = each.StartDate.Format("2006-01-02")
+		each.Formatted_End_Date = each.EndDate.Format("2006-01-02")
+		result = append(result, each)
+
+	}
+	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
+	session, _ := store.Get(r, "SESSION_ID")
+
+	if session.Values["IsLogin"] != true {
+		Data.IsLogin = false
+	} else {
+		Data.IsLogin = session.Values["IsLogin"].(bool)
+		Data.Username = session.Values["Name"].(string)
+	}
+
+	resp := map[string]interface{}{
+		"Projects": result,
+		"Data":     Data,
+	}
+
+	w.WriteHeader(http.StatusOK)
+	tmpl.Execute(w, resp)
 }
