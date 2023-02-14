@@ -49,6 +49,7 @@ type Project struct {
 	Formatted_End_Date   string
 	Author               string
 	Image                string
+	Time_Difference      int
 }
 
 var Projects []Project
@@ -104,8 +105,13 @@ func home(w http.ResponseWriter, r *http.Request) {
 		}
 		each.Formatted_Start_Date = each.StartDate.Format("2006-01-02")
 		each.Formatted_End_Date = each.EndDate.Format("2006-01-02")
+		diff := each.EndDate.Sub(each.StartDate)
+		seconds := int(diff.Seconds())
+		minutes := seconds / 60
+		hours := minutes / 60
+		days := hours / 24
+		each.Time_Difference = days
 		result = append(result, each)
-
 	}
 	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
 	session, _ := store.Get(r, "SESSION_ID")
@@ -161,6 +167,7 @@ func addProject(w http.ResponseWriter, r *http.Request) {
 	}
 	dataContex := r.Context().Value("dataFile")
 	image := dataContex.(string)
+
 	title := r.PostForm.Get("title")
 	description := r.PostForm.Get("description")
 	startDate := r.PostForm.Get("startDate")
@@ -262,6 +269,7 @@ func editProject(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("message : " + err.Error()))
 		return
 	}
+
 	type isUsingTechnology struct {
 		IsUsingReact      bool
 		IsUsingJavascript bool
@@ -416,6 +424,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Expires", "0")
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
+
 func logout(w http.ResponseWriter, r *http.Request) {
 	log.Println("logout function called")
 	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
