@@ -55,7 +55,7 @@
         </div>
         <div class="w-[80%] mb-20 lg:w-1/2">
 
-            <form action="/update-project/{{.Index}}" method="post" id="projectForm">
+            <form action="/update-project/{{.Index}}" method="post" id="projectForm" enctype="multipart/form-data">
 
                 <div class="projectName">
                     <label class="font-medium" for="name">Project Name</label>
@@ -120,12 +120,12 @@
 
                 </div>
                 <div class="projectThumbnail">
-                    <label class="font-medium" for="image">Upload Image</label>
-                    <input class="file w-full rounded-none" type="file" name="image" id="image"
-                        accept="image/png, image/gif, image/jpeg" />
+                    <label class="font-medium" for="input-image">Upload Image</label>
+                    <input class="file w-full rounded-none" type="file" name="input-image" id="input-image"
+                        accept="image/png, image/gif, image/jpeg" required />
                 </div>
                 <div class="formSubmit flex justify-end">
-                    <button type="submit" class="submitButton bg-black text-white px-4 py-1 rounded-xl"
+                    <button class="submitButton bg-black text-white px-4 py-1 rounded-xl"
                         style="cursor: pointer;">Submit</button>
                 </div>
             </form>
